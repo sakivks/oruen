@@ -70,9 +70,9 @@ class HeaderLinks extends React.Component{
                             <Grow in={open} id="menu-list" style={{ transformOrigin: '0 0 0' }}>
                                 <Paper className={classes.dropdown}>
                                     <MenuList role="menu">
-                                        <MenuItem onClick={this.handleClose} className={classes.dropdownItem}>Mike John responded to your email</MenuItem>
+                                        <MenuItem onClick={this.handleClose} className={classes.dropdownItem}>Some notifications</MenuItem>
                                         <MenuItem onClick={this.handleClose} className={classes.dropdownItem}>You have 5 new tasks</MenuItem>
-                                        <MenuItem onClick={this.handleClose} className={classes.dropdownItem}>You're now friend with Andrew</MenuItem>
+                                        <MenuItem onClick={this.handleClose} className={classes.dropdownItem}>A new bill added</MenuItem>
                                         <MenuItem onClick={this.handleClose} className={classes.dropdownItem}>Another Notification</MenuItem>
                                         <MenuItem onClick={this.handleClose} className={classes.dropdownItem}>Another One</MenuItem>
                                     </MenuList>
