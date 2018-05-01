@@ -1,37 +1,39 @@
-import React from 'react';
-import {
-    Grid
-} from 'material-ui';
+import React from "react";
+import { Grid } from "material-ui";
 
-import {
-    RegularCard, Table, ItemGrid
-} from 'components';
+import { RegularCard, Table, ItemGrid } from "components";
 
-class TableList extends React.Component{
-    render(){
-        return (
-            <Grid container>
-                <ItemGrid xs={12} sm={12} md={12}>
-                    <RegularCard
-                        cardTitle="Simple Table"
-                        cardSubtitle="Here is a subtitle for this table"
-                        content={
-                            <Table
-                                tableHeaderColor="primary"
-                                tableHead={['Name','Country','City','Salary']}
-                                tableData={[
-                                    [ "Dakota Rice" , "Niger" , "Oud-Turnhout" , "$36,738" ] ,
-                                    [ "Minerva Hooper" , "Curaçao" , "Sinaai-Waas" , "$23,789" ] ,
-                                    [ "Sage Rodriguez" , "Netherlands" , "Baileux" , "$56,142" ] ,
-                                    [ "Philip Chaney" , "Korea, South" , "Overland Park" , "$38,735" ] ,
-                                    [ "Doris Greene" , "Malawi" , "Feldkirchen in Kärnten" , "$63,542" ] ,
-                                    [ "Mason Porter" , "Chile" , "Gloucester" , "$78,615" ]
-                                ]}
-                            />
-                        }
-                    />
-                </ItemGrid>
-                <ItemGrid xs={12} sm={12} md={12}>
+class TableList extends React.Component {
+  render() {
+    return (
+      <Grid container>
+        <ItemGrid xs={12} sm={12} md={12}>
+          <RegularCard
+            cardTitle="Tasks" // cardSubtitle="Here is a subtitle for this table"
+            content={
+              <Table
+                tableHeaderColor="primary"
+                tableHead={[
+                  "Project Stages",
+                  "Fee(In INR)",
+                  "Hours",
+                  "Budget",
+                  "Rate",
+                  "Discount/ Fee"
+                ]}
+                tableData={[
+                  ["Preparation and Review", "1,00,000", "1,00,000","", "INR. 10,000", "0%"],
+                  ["Due Diligence Stage", "3.00,000", "", "", "", ""],
+                  ["Negotiation and Head of Terms", "2,00,000", "", "", "", ""],
+                  ["Data Room", "2,00,000", "", "", "", ""],
+                  ["Tax Structuring", "2,00,000", "", "", "", ""],
+                  ["Employment and Compromise", "2,00,000", "", "", "", ""],
+                ]}
+              />
+            }
+          />
+        </ItemGrid>
+        {/* <ItemGrid xs={12} sm={12} md={12}>
                     <RegularCard
                         plainCard
                         cardTitle="Table on Plain Background"
@@ -51,10 +53,10 @@ class TableList extends React.Component{
                             />
                         }
                     />
-                </ItemGrid>
-            </Grid>
-        );
-    }
+                </ItemGrid> */}
+      </Grid>
+    );
+  }
 }
 
 export default TableList;

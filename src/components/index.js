@@ -79,6 +79,7 @@ import Warning from "./Typography/Warning.jsx";
 import Danger from "./Typography/Danger.jsx";
 import Small from "./Typography/Small.jsx";
 import A from './Typography/A.jsx';
+import Marked from './Typography/Marked.jsx';
 
 export {
     // Cards
@@ -102,5 +103,5 @@ export {
     // Tasks
     Tasks,
     // Typography
-    P, Quote, Muted, Primary, Info, Success, Warning, Danger, Small, A,
+    P, Quote, Muted, Primary, Info, Success, Warning, Danger, Small, A, Marked
 };
