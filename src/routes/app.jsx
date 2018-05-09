@@ -5,6 +5,7 @@ import TableList from "views/TableList/TableList.jsx";
 import AboutUs from "views/AboutUs/AboutUs.jsx";
 import HowItWorks from "views/HowItWorks/HowItWorks.jsx";
 import Onboarding from "views/Onboarding/Onboarding.jsx";
+import DetailsTemplate from "views/DetailsTemplate/Comment.jsx";
 import Icons from "views/Icons/Icons.jsx";
 import Maps from "views/Maps/Maps.jsx";
 import NotificationsPage from "views/Notifications/Notifications.jsx";
@@ -48,6 +49,13 @@ const appRoutes = [
     navbarName: "Things can be used from here",
     icon: Dashboard,
     component: DashboardPage
+  },
+  {
+    path: "/commentFeature",
+    sidebarName: "Comment Feature",
+    navbarName: "WIP area (to be removed)",
+    icon: Dashboard,
+    component: DetailsTemplate
   },
   { redirect: true, path: "/", to: "/aboutus", navbarName: "Redirect" }
 ];
