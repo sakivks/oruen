@@ -11,7 +11,7 @@ import Maps from "views/Maps/Maps.jsx";
 import NotificationsPage from "views/Notifications/Notifications.jsx";
 
 import {
-    Dashboard, Person, ContentPaste, LibraryBooks, BubbleChart, LocationOn, Notifications
+    Dashboard, Person, ContentPaste, LibraryBooks, BubbleChart, LocationOn, Notifications, Build
 } from 'material-ui-icons';
 
 const appRoutes = [
@@ -54,7 +54,7 @@ const appRoutes = [
     path: "/commentFeature",
     sidebarName: "Comment Feature",
     navbarName: "WIP area (to be removed)",
-    icon: Dashboard,
+    icon: Build,
     component: DetailsTemplate
   },
   { redirect: true, path: "/", to: "/aboutus", navbarName: "Redirect" }
