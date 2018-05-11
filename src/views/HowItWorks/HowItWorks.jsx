@@ -1,7 +1,7 @@
 import React from "react";
 // import { Grid, InputLabel } from "material-ui";
 
-import { RegularCard, Button, Marked } from "components";
+import { RegularCard, Marked } from "components";
 
 const steps = `- To get our LOS, get us in touch with your retained law firm or choose a law firm from our select panel and we wil set up our operating system to which you will have direct access from your Neuro Circle dashboard.
 

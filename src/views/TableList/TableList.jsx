@@ -1,11 +1,8 @@
 import React from "react";
 import { Grid } from "material-ui";
-import { RegularCard, Table, ItemGrid } from "components";
+import { RegularCard, ItemGrid } from "components";
 import ReactTable from "./Table.jsx"
 
-const tableOptions = {
-  
-}
 class TableList extends React.Component {
   getTableContent = () => {};
 
