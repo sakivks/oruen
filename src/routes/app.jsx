@@ -10,50 +10,52 @@ import {
     Dashboard, Person, ContentPaste, LibraryBooks, BubbleChart, Build
 } from 'material-ui-icons';
 
+const dbPath = "/db";
+
 const appRoutes = [
   {
-    path: "/aboutus",
+    path: `${dbPath}/aboutus`,
     sidebarName: "About us",
     navbarName: "About us",
     icon: LibraryBooks,
     component: AboutUs
   },
   {
-    path: "/howitworks",
+    path: `${dbPath}/howitworks`,
     sidebarName: "How it works",
     navbarName: "How it works",
     icon: BubbleChart,
     component: HowItWorks
   },
   {
-    path: "/onboarding",
+    path: `${dbPath}/onboarding`,
     sidebarName: "Onboarding",
     navbarName: "Onboarding",
     icon: Person,
     component: Onboarding
   },
   {
-    path: "/workinprogress",
+    path: `${dbPath}/workinprogress`,
     sidebarName: "Work in progress",
     navbarName: "Work in progress",
     icon: ContentPaste,
     component: TableList
   },
   {
-    path: "/dashboard",
+    path: `${dbPath}/dashboard`,
     sidebarName: "templates(dashboard)",
     navbarName: "Things can be used from here",
     icon: Dashboard,
     component: DashboardPage
   },
   {
-    path: "/commentFeature",
+    path: `${dbPath}/commentFeature`,
     sidebarName: "Comment Feature",
     navbarName: "WIP area (to be removed)",
     icon: Build,
     component: DetailsTemplate
   },
-  { redirect: true, path: "/", to: "/aboutus", navbarName: "Redirect" }
+  { redirect: true, path: `${dbPath}/`, to: `${dbPath}/aboutus`, navbarName: "Redirect" }
 ];
 
 export default appRoutes;

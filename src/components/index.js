@@ -7,6 +7,10 @@ import ProfileCard from "./Cards/ProfileCard.jsx";
 import RegularCard from "./Cards/RegularCard.jsx";
 import StatsCard from "./Cards/StatsCard.jsx";
 import TasksCard from "./Cards/TasksCard.jsx";
+import Card from "./Cards/Card.jsx";
+import CardHeader from "./Cards/CardHeader.jsx";
+import CardBody from "./Cards/CardBody";
+import CardFooter from "./Cards/CardFooter";
 
 // ##############################
 // // // CustomButtons
@@ -88,6 +92,10 @@ export {
   RegularCard,
   StatsCard,
   TasksCard,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
   // CustomButtons
   Button,
   IconButton,
