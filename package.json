@@ -1,8 +1,8 @@
 {
-  "name": "material-dashboard-react",
-  "version": "1.2.0",
-  "description": "Material Dashboard React. Coded by Creative Tim",
-  "private": false,
+  "name": "neuro_circle",
+  "version": "0.5.0",
+  "description": "App for managing legal work",
+  "private": true,
   "main": "index.js",
   "dependencies": {
     "@material-ui/icons": "1.0.0-beta.42",
@@ -27,18 +27,14 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "echo \"TODO: tests to be added\" && exit 0 && react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/creativetimofficial/material-dashboard-react.git"
+    "url": "git+https://github.com/sakivks/oruen.git"
   },
   "keywords": [],
-  "author": "Creative Tim <hello@creative-tim.com> (https://www.creative-tim.com/)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/creativetimofficial/material-dashboard-react/issues"
-  },
-  "homepage": "https://creativetimofficial.github.io/material-dashboard-react/#/dashboard"
+  "author": "Vikas Kumar Singh",
+  "license": "MIT"
 }
