@@ -6,6 +6,8 @@ import InputAdornment from "material-ui/Input/InputAdornment";
 import Email from "@material-ui/icons/Email";
 import LockOutline from "@material-ui/icons/LockOutline";
 import People from "@material-ui/icons/People";
+//Routing
+import { NavLink } from "react-router-dom";
 // core components
 import Header from "componentsMK/Header/Header.jsx";
 import GridContainer from "componentsMK/Grid/GridContainer.jsx";
@@ -40,7 +42,7 @@ class LoginPage extends React.Component {
     );
   }
   render() {
-    const { classes, ...rest } = this.props;
+    const { classes, successURL, ...rest } = this.props;
     return (
       <div>
         <Header
@@ -69,6 +71,7 @@ class LoginPage extends React.Component {
                           href="#pablo"
                           target="_blank"
                           color="transparent"
+                          disabled
                           onClick={e => e.preventDefault()}
                         >
                           <i
@@ -79,6 +82,7 @@ class LoginPage extends React.Component {
                           href="#pablo"
                           target="_blank"
                           color="transparent"
+                          disabled
                           onClick={e => e.preventDefault()}
                         >
                           <i
@@ -148,9 +152,13 @@ class LoginPage extends React.Component {
                       />
                     </CardBody>
                     <CardFooter className={classes.cardFooter}>
-                      <Button simple color="primary" size="lg">
-                        Get started
-                      </Button>
+                      <NavLink
+                        to={successURL}
+                      >
+                        <Button simple color="primary" size="lg">
+                          Get started
+                        </Button>
+                      </NavLink>
                     </CardFooter>
                   </form>
                 </Card>

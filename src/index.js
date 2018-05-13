@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
-import { Router, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
 
 import "assets/css/material-dashboard-react.css?v=1.2.0";
 
@@ -13,7 +13,15 @@ ReactDOM.render(
   <Router history={hist}>
     <Switch>
       {indexRoutes.map((prop, key) => {
-        return <Route path={prop.path} component={prop.component} key={key} />;
+        if (prop.redirect)
+          return <Redirect from={prop.path} to={prop.to} key={key} />;
+        return (
+          <Route
+            path={prop.path}
+            render={routeProps => <prop.component {...routeProps} {...prop.props} />}
+            key={key}
+          />
+        );
       })}
     </Switch>
   </Router>,
