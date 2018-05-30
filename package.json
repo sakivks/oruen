@@ -5,7 +5,8 @@
   "private": true,
   "main": "index.js",
   "dependencies": {
-    "@material-ui/icons": "1.0.0",
+    "@material-ui/icons": "1.0.0-beta.42",
+    "axios": "^0.18.0",
     "chartist": "0.11.0",
     "classnames": "2.2.5",
     "github-markdown-css": "^2.10.0",
@@ -19,10 +20,13 @@
     "react-chartist": "0.13.1",
     "react-dom": "16.2.0",
     "react-google-maps": "9.4.5",
+    "react-redux": "^5.0.7",
     "react-router-dom": "4.2.2",
     "react-scripts": "1.0.17",
     "react-swipeable-views": "0.12.12",
-    "react-table": "^6.8.2"
+    "react-table": "^6.8.2",
+    "redux": "^4.0.0",
+    "store": "^2.0.12"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -30,11 +34,21 @@
     "test": "echo \"TODO: tests to be added\" && exit 0 && react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:6100",
+      "pathRewrite": {"^/api" : ""},
+      "ws": true
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sakivks/oruen.git"
   },
   "keywords": [],
   "author": "Vikas Kumar Singh",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "redux-devtools": "^3.4.1"
+  }
 }

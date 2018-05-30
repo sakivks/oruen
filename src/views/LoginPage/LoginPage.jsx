@@ -5,9 +5,9 @@ import InputAdornment from "material-ui/Input/InputAdornment";
 // @material-ui/icons
 import Email from "@material-ui/icons/Email";
 import LockOutline from "@material-ui/icons/LockOutline";
-import People from "@material-ui/icons/People";
+// import People from "@material-ui/icons/People";
 //Routing
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 // core components
 import Header from "componentsMK/Header/Header.jsx";
 import GridContainer from "componentsMK/Grid/GridContainer.jsx";
@@ -23,6 +23,11 @@ import CustomInput from "componentsMK/CustomInput/CustomInput.jsx";
 import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 
 import image from "assets/img/bg7.jpg";
+import {
+  infoColor,
+} from "assets/jss/material-dashboard-react.jsx";
+
+
 
 class LoginPage extends React.Component {
   constructor(props) {
@@ -42,7 +47,7 @@ class LoginPage extends React.Component {
     );
   }
   render() {
-    const { classes, successURL, ...rest } = this.props;
+    const { classes, register, login, ...rest } = this.props;
     return (
       <div>
         <Header
@@ -105,7 +110,7 @@ class LoginPage extends React.Component {
                     </CardHeader>
                     <p className={classes.divider}>Or Be Classical</p>
                     <CardBody>
-                      <CustomInput
+                      {/* <CustomInput
                         labelText="First Name..."
                         id="first"
                         formControlProps={{
@@ -119,7 +124,7 @@ class LoginPage extends React.Component {
                             </InputAdornment>
                           )
                         }}
-                      />
+                      /> */}
                       <CustomInput
                         labelText="Email..."
                         id="email"
@@ -152,13 +157,12 @@ class LoginPage extends React.Component {
                       />
                     </CardBody>
                     <CardFooter className={classes.cardFooter}>
-                      <NavLink
-                        to={successURL}
-                      >
-                        <Button simple color="primary" size="lg">
-                          Get started
+                        <Button simple color="default" size="lg" onClick={register}>
+                          Register
                         </Button>
-                      </NavLink>
+                        <Button simple color="primary" size="lg" onClick={login}>
+                          Login
+                        </Button>
                     </CardFooter>
                   </form>
                 </Card>
