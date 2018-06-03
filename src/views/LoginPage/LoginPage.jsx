@@ -19,24 +19,46 @@ import CardBody from "componentsMK/Card/CardBody.jsx";
 import CardHeader from "componentsMK/Card/CardHeader.jsx";
 import CardFooter from "componentsMK/Card/CardFooter.jsx";
 import CustomInput from "componentsMK/CustomInput/CustomInput.jsx";
+import { Info } from "components";
+import { serviceCall, browserStore as store } from "core/utils/utils";
 
 import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 
 import image from "assets/img/bg7.jpg";
-import {
-  infoColor,
-} from "assets/jss/material-dashboard-react.jsx";
-
-
 
 class LoginPage extends React.Component {
   constructor(props) {
     super(props);
     // we use this to make the card to appear after the page has been rendered
     this.state = {
-      cardAnimaton: "cardHidden"
+      cardAnimaton: "cardHidden",
+      email: "test@test.com",
+      password: "test",
+      loginError: false
     };
   }
+
+  login = async () => {
+    try {
+      var user = (await serviceCall("public/api/users/authenticate", {
+        method: "post",
+        data: {
+          user: {
+            email: this.state.email,
+            password: this.state.password
+          }
+        }
+      })).data.data;
+      console.log(user);      
+      store.set("user", user);
+      store.set("authToken", user.token);
+      this.props.history.push("/db");  
+    } catch (error) {
+      console.log("error while login \n", error);
+      this.setState({ loginError: true });
+    }
+  };
+
   componentDidMount() {
     // we add a hidden class to the card and after 700 ms we delete it and the transition appears
     setTimeout(
@@ -47,15 +69,11 @@ class LoginPage extends React.Component {
     );
   }
   render() {
-    const { classes, register, login, ...rest } = this.props;
+    const { classes, ...rest } = this.props;
+    var self = this;
     return (
       <div>
-        <Header
-          absolute
-          color="transparent"
-          brand="Neuro Circle"
-          {...rest}
-        />
+        <Header absolute color="transparent" brand="Neuro Circle" {...rest} />
         <div
           className={classes.pageHeader}
           style={{
@@ -132,10 +150,14 @@ class LoginPage extends React.Component {
                           fullWidth: true
                         }}
                         inputProps={{
+                          value: self.state.email,
+                          onChange: event => {
+                            self.setState({ email: event.target.value });
+                          },
                           type: "email",
                           endAdornment: (
                             <InputAdornment position="end">
-                              <Email className={classes.inputIconsColor}/>
+                              <Email className={classes.inputIconsColor} />
                             </InputAdornment>
                           )
                         }}
@@ -147,22 +169,33 @@ class LoginPage extends React.Component {
                           fullWidth: true
                         }}
                         inputProps={{
+                          value: self.state.password,
+                          onChange: event => {
+                            self.setState({ password: event.target.value });
+                          },
                           type: "password",
                           endAdornment: (
                             <InputAdornment position="end">
-                              <LockOutline className={classes.inputIconsColor}/>
+                              <LockOutline
+                                className={classes.inputIconsColor}
+                              />
                             </InputAdornment>
                           )
                         }}
                       />
                     </CardBody>
                     <CardFooter className={classes.cardFooter}>
-                        <Button simple color="default" size="lg" onClick={register}>
-                          Register
-                        </Button>
-                        <Button simple color="primary" size="lg" onClick={login}>
-                          Login
-                        </Button>
+                      {this.state.loginError && (
+                        <Info>Invalid Username/Password</Info>
+                      )}
+                      <Button
+                        simple
+                        color="primary"
+                        size="lg"
+                        onClick={this.login}
+                      >
+                        Login
+                      </Button>
                     </CardFooter>
                   </form>
                 </Card>

@@ -34,10 +34,14 @@
     "test": "echo \"TODO: tests to be added\" && exit 0 && react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
+  "comment": "neurobackend.herokuapp.com",
   "proxy": {
     "/api": {
-      "target": "http://localhost:6100",
-      "pathRewrite": {"^/api" : ""},
+      "target": "http://neurobackend.herokuapp.com",
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/api": ""
+      },
       "ws": true
     }
   },
