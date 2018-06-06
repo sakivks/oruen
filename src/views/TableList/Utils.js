@@ -37,22 +37,17 @@ export function makeDataLevel2() {
     return (
         [
             {
-                stage: 'Capitalization Table Creation',
+                subStage: 'Capitalization Table Creation',
                 fee: '50,000',
             },
             {
-                stage: 'Drafting Shortcut',
+                subStage: 'Drafting Shortcut',
                 fee: '30,000',
             },
             {
-                stage: 'Basic Deal Terms',
-                fee: '',
-            },
-            {
-                stage: 'Investor’s Rights',
+                subStage: 'Basic Deal Terms',
                 fee: '',
             }
-
         ]
     )
 }

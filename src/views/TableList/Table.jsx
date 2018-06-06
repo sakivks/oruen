@@ -1,35 +1,15 @@
 import React from "react";
 import { makeData, makeDataLevel2 } from "./Utils";
-import { RegularCard, Marked } from "components";
+// import { RegularCard, Marked } from "components";
 
 // Import React Table
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import "./table.css";
-
-const desc = `__DESCRIPTION__ : This card covers the pre-financing capitalization of the company. You should only include shares, options and warrants that are outstanding prior to the financing or top up shares that will be
-counted in the fully diluted pre-money shares (i.e., don't include the shares being issued in the
-financing in this interview page).
-
-
-__TEAM__:
-
-Fee Earner    | Role          
-------------- |-------------
-Assign        | Senior Associate  
-Assign        | Associate     
-Assign        | Partner
-Assign | Paralegal
-
-
-__COMMENT__:
-Hi Senior Associate,
-Please coordinate with the paralegal to finish this card by tomorrow noon.
-Thanks,
-Partner
-
-`
-
+// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import CardView from "./CardsView";
+import produce from "immer"
+// import { Button } from "material-ui";
 
 class Table extends React.Component {
   constructor() {
@@ -42,7 +22,7 @@ class Table extends React.Component {
       {
         Header: "Project Stages",
         accessor: "stage",
-        minWidth:200,
+        minWidth: 200,
         Cell: this.renderEditable
       },
       {
@@ -69,17 +49,16 @@ class Table extends React.Component {
     this.columnsLevel2 = [
       {
         Header: "Project Sub Stages",
-        accessor: "stage",
+        accessor: "subStage",
         minWidth: 300,
         Cell: this.renderEditable2
       },
       {
         Header: "Fee (INR)",
-        accessor: "fee",
-        Cell: this.renderEditable2
+        accessor: "fee"
+        // Cell: this.renderEditable2
       }
     ];
-
   }
 
   renderEditable = cellInfo => {
@@ -101,20 +80,35 @@ class Table extends React.Component {
   };
 
   renderEditable2 = cellInfo => {
+    const openDialog = () => {
+      const nextState = produce(this.state, draftState => {
+        draftState.data2[cellInfo.index].openDialog = true;
+      })
+      this.setState({...nextState})
+    }
+
+    const closeDialog = () => {
+      const nextState = produce(this.state, draftState => {
+        draftState.data2[cellInfo.index].openDialog = false;
+      })
+      this.setState({...nextState})
+    }
+
     return (
-      <div
-        // style={{ backgroundColor: "#fafafa" }}
-        contentEditable
-        suppressContentEditableWarning
-        onBlur={e => {
-          const data2 = [...this.state.data2];
-          data2[cellInfo.index][cellInfo.column.id] = e.target.innerHTML;
-          this.setState({ data2 });
-        }}
-        dangerouslySetInnerHTML={{
-          __html: this.state.data2[cellInfo.index][cellInfo.column.id]
-        }}
-      />
+      // <Link to={`db/workinprogress/${cellInfo.original.stage}/${this.state.data2[cellInfo.index][cellInfo.column.id]}`} target="_blank">{this.state.data2[cellInfo.index][cellInfo.column.id]}</ Link>
+      <div>
+        <div
+          style={{ cursor: "pointer" }}
+          onClick={openDialog}
+        >
+          {this.state.data2[cellInfo.index][cellInfo.column.id]}
+        </div>
+        <CardView
+          open={this.state.data2[cellInfo.index].openDialog}
+          closeDialog={closeDialog}
+          cardId={this.state.data2[cellInfo.index][cellInfo.column.id]}
+        />
+      </div>
     );
   };
 
@@ -131,37 +125,22 @@ class Table extends React.Component {
           className="-highlight"
           SubComponent={row => {
             return (
-
-              <div style={{ 
-                margin: "20px", 
-                border: "0.5px", 
-                borderStyle:'solid',
-                borderColor:'rgba(0, 0, 0, 0.4)',
-                borderRadius: "5px" 
-                // borderTop: '0px'
-                }}>
+              <div
+                style={{
+                  marginBottom: "20px",
+                  border: "0.5px",
+                  borderStyle: "solid",
+                  borderColor: "rgba(0, 0, 0, 0.4)"
+                  // borderRadius: "5px"
+                  // borderTop: '0px'
+                }}
+              >
                 <ReactTable
                   data={data}
                   columns={this.columnsLevel2}
                   defaultPageSize={3}
                   showPagination={false}
-                  SubComponent={row => {
-                    return (
-                      <div style={{ padding: "20px" }}>
-                        <RegularCard
-                          plainCard
-                          headerColor="green"
-                          cardTitle="Term Sheet negotiation"
-                          cardSubtitle="Capitalization Table Creation"
-                          content={<div>
-                            <Marked md={desc}/>
-                            </div>}
-                        />
-                      </div>
-                    );
-                  }}
                 />
-
               </div>
             );
           }}
