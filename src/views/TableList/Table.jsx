@@ -6,9 +6,11 @@ import { makeData, makeDataLevel2 } from "./Utils";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import "./table.css";
-// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import CardView from "./CardsView";
-import produce from "immer"
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { RegularCard } from "components";
+
+import CardView from "./CardView";
+import produce from "immer";
 // import { Button } from "material-ui";
 
 class Table extends React.Component {
@@ -83,70 +85,72 @@ class Table extends React.Component {
     const openDialog = () => {
       const nextState = produce(this.state, draftState => {
         draftState.data2[cellInfo.index].openDialog = true;
-      })
-      this.setState({...nextState})
-    }
+      });
+      this.setState({ ...nextState });
+    };
 
     const closeDialog = () => {
       const nextState = produce(this.state, draftState => {
         draftState.data2[cellInfo.index].openDialog = false;
-      })
-      this.setState({...nextState})
-    }
+      });
+      this.setState({ ...nextState });
+    };
 
     return (
-      // <Link to={`db/workinprogress/${cellInfo.original.stage}/${this.state.data2[cellInfo.index][cellInfo.column.id]}`} target="_blank">{this.state.data2[cellInfo.index][cellInfo.column.id]}</ Link>
-      <div>
-        <div
-          style={{ cursor: "pointer" }}
-          onClick={openDialog}
-        >
-          {this.state.data2[cellInfo.index][cellInfo.column.id]}
-        </div>
-        <CardView
-          open={this.state.data2[cellInfo.index].openDialog}
-          closeDialog={closeDialog}
-          cardId={this.state.data2[cellInfo.index][cellInfo.column.id]}
-        />
-      </div>
+      <Link to={`db/workinprogress/Cards/1`} target="_blank">
+        {this.state.data2[cellInfo.index][cellInfo.column.id]}
+      </Link>
+      // <Link to={`db/workinprogress/Cards/${cellInfo.original.stage}/${this.state.data2[cellInfo.index][cellInfo.column.id]}`} target="_blank">{this.state.data2[cellInfo.index][cellInfo.column.id]}</ Link>
+      // <div>
+      //   <div style={{ cursor: "pointer" }} onClick={openDialog}>
+      //     {this.state.data2[cellInfo.index][cellInfo.column.id]}
+      //   </div>
+      //   <CardView
+      //     open={this.state.data2[cellInfo.index].openDialog}
+      //     closeDialog={closeDialog}
+      //     cardId={this.state.data2[cellInfo.index][cellInfo.column.id]}
+      //   />
+      // </div>
     );
   };
 
   render() {
     const { data } = this.state;
     return (
-      <div>
-        <ReactTable
-          data={data}
-          columns={this.columns}
-          defaultPageSize={15}
-          showPagination={false}
-          minRows={0}
-          className="-highlight"
-          SubComponent={row => {
-            return (
-              <div
-                style={{
-                  marginBottom: "20px",
-                  border: "0.5px",
-                  borderStyle: "solid",
-                  borderColor: "rgba(0, 0, 0, 0.4)"
-                  // borderRadius: "5px"
-                  // borderTop: '0px'
-                }}
-              >
-                <ReactTable
-                  data={data}
-                  columns={this.columnsLevel2}
-                  defaultPageSize={3}
-                  showPagination={false}
-                />
-              </div>
-            );
-          }}
-        />
-        <br />
-      </div>
+      <RegularCard
+        cardTitle="Tasks"
+        content={
+          <ReactTable
+            data={data}
+            columns={this.columns}
+            defaultPageSize={15}
+            showPagination={false}
+            minRows={0}
+            className="-highlight"
+            SubComponent={row => {
+              return (
+                <div
+                  style={{
+                    marginBottom: "20px",
+                    border: "0.5px",
+                    borderStyle: "solid",
+                    borderColor: "rgba(0, 0, 0, 0.4)"
+                    // borderRadius: "5px"
+                    // borderTop: '0px'
+                  }}
+                >
+                  <ReactTable
+                    data={data}
+                    columns={this.columnsLevel2}
+                    defaultPageSize={3}
+                    showPagination={false}
+                  />
+                </div>
+              );
+            }}
+          />
+        }
+      />
     );
   }
 }

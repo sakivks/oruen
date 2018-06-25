@@ -1,14 +1,23 @@
 import DashboardPage from "views/Dashboard/Dashboard.jsx";
+import React from 'react'
+
 // import UserProfile from "views/UserProfile/UserProfile.jsx";
-import TableList from "views/TableList/TableList.jsx";
+import Table from "views/TableList/Table.jsx";
+// import CardView from "views/TableList/CardView.jsx";
 import AboutUs from "views/AboutUs/AboutUs.jsx";
 import HowItWorks from "views/HowItWorks/HowItWorks.jsx";
 import Onboarding from "views/Onboarding/Onboarding.jsx";
 import DetailsTemplate from "views/DetailsTemplate/Comment.jsx";
+import CardView from "views/TableList/CardView.jsx";
 
 import {
-    Dashboard, Person, ContentPaste, LibraryBooks, BubbleChart, Build
-} from 'material-ui-icons';
+  Dashboard,
+  Person,
+  ContentPaste,
+  LibraryBooks,
+  BubbleChart,
+  Build
+} from "material-ui-icons";
 
 const dbPath = "/db";
 
@@ -39,7 +48,7 @@ const appRoutes = [
     sidebarName: "Work in progress",
     navbarName: "Work in progress",
     icon: ContentPaste,
-    component: TableList
+    component: Table
   },
   {
     path: `${dbPath}/dashboard`,
@@ -55,7 +64,19 @@ const appRoutes = [
     icon: Build,
     component: DetailsTemplate
   },
-  { redirect: true, path: `${dbPath}/`, to: `${dbPath}/aboutus`, navbarName: "Redirect" }
+  {
+    path: `${dbPath}/card`,
+    sidebarName: "Card",
+    navbarName: "Card",
+    icon: Build,
+    component: CardView
+  },
+  {
+    redirect: true,
+    path: `${dbPath}/`,
+    to: `${dbPath}/aboutus`,
+    navbarName: "Redirect"
+  }
 ];
 
 export default appRoutes;
