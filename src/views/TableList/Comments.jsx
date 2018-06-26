@@ -74,14 +74,16 @@ class Comments extends Component {
       text : commentTxt
     }
 
-    let commentsObj = this.state.comments.push(cmtObj);
-    this.setState({comments : commentsObj , commentTxt : ""})
+    let commentsObj = this.state.comments;
+    commentsObj.push(cmtObj);
+    console.log(commentsObj);
+    this.setState({'commentTxt' : ''})
 
   }
   handleChange = prop => event => {
     this.setState({ [prop]: event.target.value });
   };
-  addComments(){
+  addComments = () => {
     const { classes } = this.props;
     return (
       <div>
