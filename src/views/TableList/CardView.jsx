@@ -1,9 +1,11 @@
 import React from "react";
 import {
+  withStyles,
   Button,
   Dialog,
   DialogActions,
-  Slide
+  Slide,
+  Table,TableBody , TableCell,TableHead,TableRow
 } from "material-ui";
 
 import { RegularCard, Marked } from "components";
@@ -15,15 +17,35 @@ function Transition(props) {
 
 const desc = `__DESCRIPTION__ : This card covers the pre-financing capitalization of the company. You should only include shares, options and warrants that are outstanding prior to the financing or top up shares that will be
 counted in the fully diluted pre-money shares (i.e., don't include the shares being issued in the
-financing in this interview page).
+financing in this interview page).`;
 
-__COMMENT__:
-
-`;
-
+const styles = theme => ({
+  table: {
+    maxWidth: 300
+  },
+  row: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.background.default,
+    },
+  },
+  heading: {
+    marginBottom: 10,
+    marginTop: 10
+  }
+})
 class CardView extends React.Component {
   state = {
-    open: true
+    open: true,
+    teamMembers:[
+      {
+        "name":"Vikas",
+        "timeLog":"20"
+      },
+      {
+       "name":"Ram",
+       "timeLog":"40" 
+      }
+    ]
   };
 
   // handleClose = () => {
@@ -33,6 +55,38 @@ class CardView extends React.Component {
   // componentWillReceiveProps = nextProps => {
   //   this.setState({ open: nextProps.open });
   // };
+
+  displayTeamMembers(){
+    let data = this.state.teamMembers;
+    const { classes } = this.props;
+    let teamTable =(
+      <div>
+        <h6 className={classes.heading}>Team Members</h6>
+        <Table className={classes.table}>
+          <TableHead>
+            <TableRow>
+              <TableCell>Name</TableCell>
+              <TableCell numeric>Time Log</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data.map(n => {
+              return (
+                <TableRow className={classes.row} key={n.id}>
+                  <TableCell component="th" scope="row">
+                    {n.name}
+                  </TableCell>
+                  <TableCell numeric>{n.timeLog}</TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </div>
+    )
+
+    return teamTable;
+  }
 
   render() {
     return (
@@ -55,6 +109,7 @@ class CardView extends React.Component {
               content={
                 <div>
                   <Marked md={desc} />
+                  { this.displayTeamMembers() }
                   <Comments/>
                 </div>
               }
@@ -78,4 +133,4 @@ class CardView extends React.Component {
   }
 }
 
-export default CardView;
+export default withStyles(styles)(CardView);

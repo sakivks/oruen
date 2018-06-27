@@ -9,6 +9,7 @@ import HowItWorks from "views/HowItWorks/HowItWorks.jsx";
 import Onboarding from "views/Onboarding/Onboarding.jsx";
 import DetailsTemplate from "views/DetailsTemplate/Comment.jsx";
 import CardView from "views/TableList/CardView.jsx";
+import CardViewCreate from "views/TableList/CardViewCreate.jsx";
 
 import {
   Dashboard,
@@ -70,6 +71,13 @@ const appRoutes = [
     navbarName: "Card",
     icon: Build,
     component: CardView
+  },
+  {
+    path: `${dbPath}/CcardCreate`,
+    sidebarName: "Card create",
+    navbarName: "Card create",
+    icon: Build,
+    component: CardViewCreate
   },
   {
     redirect: true,

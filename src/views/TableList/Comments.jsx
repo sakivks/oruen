@@ -65,7 +65,7 @@ class Comments extends Component {
     // user is logged in so user details should be populated from the login
     let user ="Vikas";
     // need to modify the date specific settings based on library used
-    let date = new Date();
+    let date = new Date().toString();
     let commentTxt  = this.state.commentTxt;
 
     let cmtObj = {
@@ -76,9 +76,7 @@ class Comments extends Component {
 
     let commentsObj = this.state.comments;
     commentsObj.push(cmtObj);
-    console.log(commentsObj);
-    this.setState({'commentTxt' : ''})
-
+    this.setState({'comments':commentsObj , 'commentTxt' : ''})
   }
   handleChange = prop => event => {
     this.setState({ [prop]: event.target.value });
@@ -88,7 +86,7 @@ class Comments extends Component {
     return (
       <div>
         <FormControl className={classes.margin}>
-          <InputLabel htmlFor="adornment-password">Add Comment</InputLabel>
+          <InputLabel htmlFor="adornment-comment">Add Comment</InputLabel>
           <Input
             id="adornment-comment"
             type="text"
@@ -142,8 +140,9 @@ class Comments extends Component {
     const { classes } = this.props;
     return (
       <div>
-         { this.renderComments() }
-          { this.addComments() }     
+        <h6>Comments</h6> 
+        { this.renderComments() }
+        { this.addComments() }     
       </div>
     );
   }
