@@ -19,7 +19,7 @@ function Header({ ...props }) {
   function makeBrand() {
     var name;
     props.routes.map((prop, key) => {
-      if (prop.path === props.location.pathname) {
+      if (!prop.redirect && props.location.pathname.startsWith(prop.path)) {
         name = prop.navbarName;
       }
       return null;

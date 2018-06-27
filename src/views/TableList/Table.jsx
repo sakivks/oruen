@@ -6,7 +6,7 @@ import { makeData, makeDataLevel2 } from "./Utils";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import "./table.css";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import { RegularCard } from "components";
 
 import CardView from "./CardView";
@@ -82,6 +82,7 @@ class Table extends React.Component {
   };
 
   renderEditable2 = cellInfo => {
+    const { match } = this.props;
     const openDialog = () => {
       const nextState = produce(this.state, draftState => {
         draftState.data2[cellInfo.index].openDialog = true;
@@ -97,7 +98,7 @@ class Table extends React.Component {
     };
 
     return (
-      <Link to={`db/workinprogress/Cards/1`} target="_blank">
+      <Link to={`${match.path}/card/1`} target="_blank">
         {this.state.data2[cellInfo.index][cellInfo.column.id]}
       </Link>
       // <Link to={`db/workinprogress/Cards/${cellInfo.original.stage}/${this.state.data2[cellInfo.index][cellInfo.column.id]}`} target="_blank">{this.state.data2[cellInfo.index][cellInfo.column.id]}</ Link>
@@ -114,7 +115,7 @@ class Table extends React.Component {
     );
   };
 
-  render() {
+  getWIPTable = () => {
     const { data } = this.state;
     return (
       <RegularCard
@@ -151,6 +152,17 @@ class Table extends React.Component {
           />
         }
       />
+    );
+  };
+
+  render() {
+    return (
+      <React.Fragment>
+        <Switch>
+          <Route path={'/db/workinprogress/card/:id'} component={CardView} />
+          {this.getWIPTable()}
+        </Switch>
+      </React.Fragment>
     );
   }
 }
