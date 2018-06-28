@@ -21,7 +21,15 @@ financing in this interview page).`;
 
 const styles = theme => ({
   table: {
-    maxWidth: 300
+    maxWidth: 500
+  },
+  thead: {
+    backgroundColor: "#2196f3",
+    color:  "white"
+  },
+  th:{
+    color:"white",
+    fontWeight: "bold", 
   },
   row: {
     '&:nth-of-type(odd)': {
@@ -39,10 +47,12 @@ class CardView extends React.Component {
     teamMembers:[
       {
         "name":"Vikas",
+        "work":"working on Card",
         "timeLog":"20"
       },
       {
        "name":"Ram",
+       "work":"working on comments",
        "timeLog":"40" 
       }
     ]
@@ -56,17 +66,18 @@ class CardView extends React.Component {
   //   this.setState({ open: nextProps.open });
   // };
 
-  displayTeamMembers(){
+  displayTeamMembers = () => {
     let data = this.state.teamMembers;
     const { classes } = this.props;
     let teamTable =(
       <div>
         <h6 className={classes.heading}>Team Members</h6>
         <Table className={classes.table}>
-          <TableHead>
+          <TableHead className={classes.thead}>
             <TableRow>
-              <TableCell>Name</TableCell>
-              <TableCell numeric>Time Log</TableCell>
+              <TableCell className={classes.th}>Name</TableCell>
+              <TableCell className={classes.th}>Work</TableCell>
+              <TableCell className={classes.th} numeric>Time Log</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -76,6 +87,7 @@ class CardView extends React.Component {
                   <TableCell component="th" scope="row">
                     {n.name}
                   </TableCell>
+                  <TableCell>{n.work}</TableCell>
                   <TableCell numeric>{n.timeLog}</TableCell>
                 </TableRow>
               );

@@ -25,6 +25,10 @@ const styles = theme => ({
   },
   button: {
     margin: theme.spacing.unit,
+    float: "right",
+    backgroundColor: "#2196f3",
+    fontWeight: "bold",
+    color: "white"
   }
 });
 
@@ -44,13 +48,12 @@ state = {
   };
 
   descRenderDOM = () => {
-    let classes= this.props;
+    let { classes }= this.props;
     let descDOM = (
       <div>
         <TextField
           id="desc"
           label="Description"
-          className={classes.textField}
           value={this.state.name}
           onChange={this.handleChange('name')}
           placeholder = "Enter Description"
@@ -132,7 +135,7 @@ state = {
   }
 
   render() {
-    let classes = this.props;
+    let { classes } = this.props;
     return (
       <div>
             <RegularCard

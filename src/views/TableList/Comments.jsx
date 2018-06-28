@@ -5,6 +5,7 @@ import red from "material-ui/colors/red";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import zIndex from "material-ui/styles/zIndex";
 import AddCircleOutline from "@material-ui/icons/AddCircleOutline";
+import moment from "moment";
 
 const styles = theme => ({
   card: {
@@ -60,8 +61,14 @@ class Comments extends Component {
     commentTxt : ""
   };
 
+  keyEnterComments = (event) =>{
+    if( event.key == 'Enter'){
+      console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
+      this.updateComments();
+    }
+  }
+  
   updateComments = () => {
-    console.log("inside comments updating");
     // user is logged in so user details should be populated from the login
     let user ="Vikas";
     // need to modify the date specific settings based on library used
@@ -78,21 +85,28 @@ class Comments extends Component {
     commentsObj.push(cmtObj);
     this.setState({'comments':commentsObj , 'commentTxt' : ''})
   }
+
+
   handleChange = prop => event => {
     this.setState({ [prop]: event.target.value });
   };
+
   addComments = () => {
     const { classes } = this.props;
     return (
       <div>
         <FormControl className={classes.margin}>
-          <InputLabel htmlFor="adornment-comment">Add Comment</InputLabel>
+          <InputLabel htmlFor="input-comment">Add Comment</InputLabel>
           <Input
-            id="adornment-comment"
+            id="input-comment"
             type="text"
             value ={this.state.commentTxt}
             placeholder = "comments"
             onChange = {this.handleChange('commentTxt')}
+            onKeyPress = { this.keyEnterComments }
+            fullWidth
+            multiline
+            rows = "2"
             endAdornment = {
               <InputAdornment position="end">
                 <IconButton
@@ -108,7 +122,7 @@ class Comments extends Component {
     )
   }
 
-  renderComments(){
+  renderComments = () =>{
     const { classes } = this.props;
     let comments = this.state.comments;
     let titleDOM = null;

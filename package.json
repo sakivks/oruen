@@ -15,6 +15,7 @@
     "material-ui": "1.0.0-beta.41",
     "material-ui-chip-input": "^0.19.0",
     "material-ui-icons": "^1.0.0-beta.36",
+    "moment": "^2.22.2",
     "namor": "^1.0.1",
     "npm-run-all": "4.1.2",
     "perfect-scrollbar": "1.3.0",
