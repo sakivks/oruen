@@ -10,8 +10,11 @@ import moment from "moment";
 const styles = theme => ({
   card: {
     width: "70%",
-    elevation: 0,
-    marginBottom: 10
+    border: "0.5px solid rgba(0, 0, 0, 0.2)",
+    borderRadius: 3
+  },
+  addComment: {
+    width: "70%",
   },
   media: {
     height: 0,
@@ -31,7 +34,7 @@ const styles = theme => ({
     transform: "rotate(180deg)"
   },
   avatar: {
-    backgroundColor: red[500]
+    backgroundColor: "#2196f3"
   },
   floatRight: {
     float : "right",
@@ -50,7 +53,7 @@ class Comments extends Component {
       {
         user: "Lawfirm",
         time: "06:10 pm",
-        text: "We are explecting completion by the weekend"
+        text: "We are expecting completion by the weekend"
       },
       {
         user: "Lawfirm",
@@ -95,7 +98,7 @@ class Comments extends Component {
     const { classes } = this.props;
     return (
       <div>
-        <FormControl className={classes.margin}>
+        <FormControl className={classes.addComment}>
           <InputLabel htmlFor="input-comment">Add Comment</InputLabel>
           <Input
             id="input-comment"
@@ -134,7 +137,7 @@ class Comments extends Component {
         </div>
       );
       return (
-        <Card className={classes.card}>
+        <Card className={classes.card} elevation={0}>
           <CardHeader
             avatar={
               <Avatar aria-label="Recipe" className={classes.avatar}>
@@ -154,7 +157,6 @@ class Comments extends Component {
     const { classes } = this.props;
     return (
       <div>
-        <h6>Comments</h6> 
         { this.renderComments() }
         { this.addComments() }     
       </div>

@@ -7,7 +7,6 @@ import Table from "views/TableList/Table.jsx";
 import AboutUs from "views/AboutUs/AboutUs.jsx";
 import HowItWorks from "views/HowItWorks/HowItWorks.jsx";
 import Onboarding from "views/Onboarding/Onboarding.jsx";
-import DetailsTemplate from "views/DetailsTemplate/Comment.jsx";
 import CardView from "views/TableList/CardView.jsx";
 import CardViewCreate from "views/TableList/CardViewCreate.jsx";
 
@@ -57,13 +56,6 @@ const appRoutes = [
     navbarName: "Things can be used from here",
     icon: Dashboard,
     component: DashboardPage
-  },
-  {
-    path: `${dbPath}/commentFeature`,
-    sidebarName: "Comment Feature",
-    navbarName: "WIP area (to be removed)",
-    icon: Build,
-    component: DetailsTemplate
   },
   {
     path: `${dbPath}/card`,
