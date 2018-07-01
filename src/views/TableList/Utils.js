@@ -14,6 +14,9 @@ export function makeData() {
         {
           subStage: "Basic Deal Terms",
           fee: ""
+        },
+        {
+
         }
       ],
       fee: "1,00,000",
@@ -44,6 +47,9 @@ export function makeData() {
       hrs: "",
       budget: "",
       rate: ""
+    },
+    {
+
     }
   ];
 }

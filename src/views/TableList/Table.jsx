@@ -107,7 +107,7 @@ class Table extends React.Component {
   };
 
   addColumn = () => {
-    this.setState((state, props) => {
+    this.setState((state) => {
       return {
         columns: [
           ...state.columns,
@@ -122,6 +122,17 @@ class Table extends React.Component {
     });
   };
 
+  addRow = () => {
+    this.setState((state, props) => {
+      return {
+        data: [...state.data, {}]
+      };
+    });
+    console.log('====================================');
+    console.log(this.state.data);
+    console.log('====================================');
+  };
+
   getWIPTable = () => {
     const { data, columns, columnsLevel2, newColumnName } = this.state;
     const { classes } = this.props;
@@ -130,7 +141,9 @@ class Table extends React.Component {
         cardTitle="Tasks"
         footer={
           <React.Fragment>
-            <Button className={classes.button}>Add Row</Button>
+            <Button className={classes.button} onClick={this.addRow}>
+              Add Row
+            </Button>
             <div style={{ float: "right" }}>
               <TextField
                 className={classes.addColumnTextbox}
@@ -157,11 +170,6 @@ class Table extends React.Component {
             minRows={0}
             className="-highlight"
             SubComponent={row => {
-              console.log(
-                row.original.subtask.map(entry => {
-                  return { row, ...entry };
-                })
-              );
               return (
                 <div
                   style={{

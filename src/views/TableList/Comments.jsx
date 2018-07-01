@@ -26,23 +26,6 @@ const styles = theme => ({
   addComment: {
     width: "70%"
   },
-  media: {
-    height: 0,
-    paddingTop: "56.25%" // 16:9
-  },
-  actions: {
-    display: "flex"
-  },
-  expand: {
-    transform: "rotate(0deg)",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest
-    }),
-    marginLeft: "auto"
-  },
-  expandOpen: {
-    transform: "rotate(180deg)"
-  },
   avatar: {
     backgroundColor: "#2196f3"
   },
@@ -56,17 +39,17 @@ class Comments extends Component {
   state = {
     comments: [
       {
-        user: "Client",
+        user: "Client 1",
         time: "06:00 pm",
         text: "progress looks good, what about the ETA?"
       },
       {
-        user: "Lawfirm",
+        user: "Lawfirm 1",
         time: "06:10 pm",
         text: "We are expecting completion by the weekend"
       },
       {
-        user: "Lawfirm",
+        user: "Client 1",
         time: "06:12 pm",
         text: "That's great!!"
       }
