@@ -1,11 +1,21 @@
 import React, { Component } from "react";
-import { withStyles, Card, CardHeader, Avatar, Input, InputLabel, FormControl, InputAdornment, IconButton } from "material-ui";
+import {
+  withStyles,
+  Card,
+  CardHeader,
+  Avatar,
+  Input,
+  InputLabel,
+  FormControl,
+  InputAdornment,
+  IconButton,
+  Typography
+} from "material-ui";
 
-import red from "material-ui/colors/red";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
-import zIndex from "material-ui/styles/zIndex";
 import AddCircleOutline from "@material-ui/icons/AddCircleOutline";
 import moment from "moment";
+import { Muted } from "components";
+// import { Typography } from "material-ui/styles/typography";
 
 const styles = theme => ({
   card: {
@@ -14,7 +24,7 @@ const styles = theme => ({
     borderRadius: 3
   },
   addComment: {
-    width: "70%",
+    width: "70%"
   },
   media: {
     height: 0,
@@ -37,7 +47,7 @@ const styles = theme => ({
     backgroundColor: "#2196f3"
   },
   floatRight: {
-    float : "right",
+    float: "right",
     fontSize: 11
   }
 });
@@ -61,34 +71,34 @@ class Comments extends Component {
         text: "That's great!!"
       }
     ],
-    commentTxt : ""
+    commentTxt: ""
   };
 
-  keyEnterComments = (event) =>{
-    if( event.key == 'Enter'){
-      console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
+  keyEnterComments = event => {
+    if (event.key === "Enter" && event.shiftKey) {
+    } else if (event.key === "Enter") {
+      console.log(moment().format("MMMM Do YYYY, h:mm:ss a"));
       this.updateComments();
     }
-  }
-  
+  };
+
   updateComments = () => {
     // user is logged in so user details should be populated from the login
-    let user ="Vikas";
+    let user = "Vikas";
     // need to modify the date specific settings based on library used
     let date = new Date().toString();
-    let commentTxt  = this.state.commentTxt;
+    let commentTxt = this.state.commentTxt;
 
     let cmtObj = {
-      user : user,
-      time : date,
-      text : commentTxt
-    }
+      user: user,
+      time: date,
+      text: commentTxt
+    };
 
     let commentsObj = this.state.comments;
     commentsObj.push(cmtObj);
-    this.setState({'comments':commentsObj , 'commentTxt' : ''})
-  }
-
+    this.setState({ comments: commentsObj, commentTxt: "" });
+  };
 
   handleChange = prop => event => {
     this.setState({ [prop]: event.target.value });
@@ -103,37 +113,36 @@ class Comments extends Component {
           <Input
             id="input-comment"
             type="text"
-            value ={this.state.commentTxt}
-            placeholder = "comments"
-            onChange = {this.handleChange('commentTxt')}
-            onKeyPress = { this.keyEnterComments }
+            value={this.state.commentTxt}
+            placeholder="comments"
+            onChange={this.handleChange("commentTxt")}
+            onKeyPress={this.keyEnterComments}
             fullWidth
             multiline
-            rows = "2"
-            endAdornment = {
+            rows="2"
+            endAdornment={
               <InputAdornment position="end">
-                <IconButton
-                  onClick = {this.updateComments}
-                >
-                <AddCircleOutline />
+                <IconButton onClick={this.updateComments}>
+                  <AddCircleOutline />
                 </IconButton>
               </InputAdornment>
-            } 
+            }
           />
         </FormControl>
       </div>
-    )
-  }
+    );
+  };
 
-  renderComments = () =>{
+  renderComments = () => {
     const { classes } = this.props;
     let comments = this.state.comments;
     let titleDOM = null;
-    let commentsDOM =  comments.map(( comment , i ) => {
+    let commentsDOM = comments.map((comment, i) => {
       titleDOM = (
         <div>
-          {comment.user} 
-          <span className={classes.floatRight}>{comment.time}</span>
+          <Muted>{comment.user}
+            <span className={classes.floatRight}>{comment.time}</span>
+          </Muted>
         </div>
       );
       return (
@@ -144,21 +153,24 @@ class Comments extends Component {
                 R
               </Avatar>
             }
-            title= {titleDOM}   
-            subheader={comment.text}
+            title={titleDOM}
+            subheader={<Typography>{comment.text}</Typography>}
           />
+          {/* <CardContent>
+            
+          </CardContent> */}
+
         </Card>
       );
     });
     return commentsDOM;
-  }
+  };
 
   render() {
-    const { classes } = this.props;
     return (
       <div>
-        { this.renderComments() }
-        { this.addComments() }     
+        {this.renderComments()}
+        {this.addComments()}
       </div>
     );
   }

@@ -1,5 +1,4 @@
 import DashboardPage from "views/Dashboard/Dashboard.jsx";
-import React from 'react'
 
 // import UserProfile from "views/UserProfile/UserProfile.jsx";
 import Table from "views/TableList/Table.jsx";

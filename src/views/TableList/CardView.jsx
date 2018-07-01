@@ -1,10 +1,6 @@
 import React from "react";
 import {
   withStyles,
-  Button,
-  Dialog,
-  DialogActions,
-  Slide,
   Paper,
   Table,
   TableBody,
@@ -16,9 +12,6 @@ import {
 import { RegularCard, Marked } from "components";
 import Comments from "./Comments.jsx";
 
-function Transition(props) {
-  return <Slide direction="up" {...props} />;
-}
 
 const desc = `__Description__ : This card covers the pre-financing capitalization of the company. You should only include shares, options and warrants that are outstanding prior to the financing or top up shares that will be
 counted in the fully diluted pre-money shares (i.e., don't include the shares being issued in the
@@ -65,14 +58,6 @@ class CardView extends React.Component {
     ]
   };
 
-  // handleClose = () => {
-  //   this.props.closeDialog();
-  // };
-
-  // componentWillReceiveProps = nextProps => {
-  //   this.setState({ open: nextProps.open });
-  // };
-
   displayTeamMembers = () => {
     let data = this.state.teamMembers;
     const { classes } = this.props;
@@ -117,17 +102,6 @@ class CardView extends React.Component {
     const {classes} = this.props;
     return (
       <div>
-        {/* <Dialog
-          open={this.state.open}
-          TransitionComponent={Transition}
-          keepMounted
-          disableBackdro[pClick
-          disableEscapeKeyDown
-          onClose={this.handleClose}
-          aria-labelledby="alert-dialog-slide-title"
-          aria-describedby="alert-dialog-slide-description"
-        > */}
-        {/* <div style={{ padding: "20px" }}> */}
         <RegularCard
           headerColor="green"
           cardTitle="Term Sheet negotiation"
@@ -143,20 +117,6 @@ class CardView extends React.Component {
             </div>
           }
         />
-        {/* </div> */}
-
-        {/* <DialogActions> */}
-        <Button onClick={this.handleClose} color="primary">
-          Share
-        </Button>
-        <Button onClick={this.handleClose} color="primary">
-          Edit
-        </Button>
-        <Button onClick={this.handleClose} color="primary">
-          Close
-        </Button>
-        {/* </DialogActions> */}
-        {/* </Dialog> */}
       </div>
     );
   }

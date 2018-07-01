@@ -1,17 +1,14 @@
 import React from "react";
 import { makeData, makeDataLevel2 } from "./Utils";
-// import { RegularCard, Marked } from "components";
 
 // Import React Table
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import "./table.css";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { Route, Link, Switch } from "react-router-dom";
 import { RegularCard } from "components";
 
 import CardView from "./CardView";
-import produce from "immer";
-// import { Button } from "material-ui";
 
 class Table extends React.Component {
   constructor() {
@@ -58,7 +55,6 @@ class Table extends React.Component {
       {
         Header: "Fee (INR)",
         accessor: "fee"
-        // Cell: this.renderEditable2
       }
     ];
   }
@@ -66,7 +62,6 @@ class Table extends React.Component {
   renderEditable = cellInfo => {
     return (
       <div
-        // style={{ backgroundColor: "#fafafa" }}
         contentEditable
         suppressContentEditableWarning
         onBlur={e => {
@@ -83,35 +78,29 @@ class Table extends React.Component {
 
   renderEditable2 = cellInfo => {
     const { match } = this.props;
-    const openDialog = () => {
-      const nextState = produce(this.state, draftState => {
-        draftState.data2[cellInfo.index].openDialog = true;
-      });
-      this.setState({ ...nextState });
-    };
+    const index = cellInfo.index;
+    cellInfo = cellInfo.original;
 
-    const closeDialog = () => {
-      const nextState = produce(this.state, draftState => {
-        draftState.data2[cellInfo.index].openDialog = false;
-      });
-      this.setState({ ...nextState });
-    };
+    console.log('====================================');
+    // console.log(cellInfo);
+    console.log(this.state.data.find(
+      task => task.stage === cellInfo.row.original.stage
+    ).subtask[index]);
+    
+    // console.log( this.state.data.find(
+    //   task => task.stage === cellInfo.original.original.stage
+    // ).subtask[cellInfo.index]);
+    console.log('====================================');
 
+    // subtask[cellInfo.index]);
     return (
       <Link to={`${match.path}/card/1`} target="_blank">
-        {this.state.data2[cellInfo.index][cellInfo.column.id]}
+        {
+          this.state.data.find(
+            task => task.stage === cellInfo.row.original.stage
+          ).subtask[index].subStage
+        }
       </Link>
-      // <Link to={`db/workinprogress/Cards/${cellInfo.original.stage}/${this.state.data2[cellInfo.index][cellInfo.column.id]}`} target="_blank">{this.state.data2[cellInfo.index][cellInfo.column.id]}</ Link>
-      // <div>
-      //   <div style={{ cursor: "pointer" }} onClick={openDialog}>
-      //     {this.state.data2[cellInfo.index][cellInfo.column.id]}
-      //   </div>
-      //   <CardView
-      //     open={this.state.data2[cellInfo.index].openDialog}
-      //     closeDialog={closeDialog}
-      //     cardId={this.state.data2[cellInfo.index][cellInfo.column.id]}
-      //   />
-      // </div>
     );
   };
 
@@ -129,6 +118,7 @@ class Table extends React.Component {
             minRows={0}
             className="-highlight"
             SubComponent={row => {
+              console.log(row.original.subtask.map((entry) => {return {row, ...entry}}));
               return (
                 <div
                   style={{
@@ -136,14 +126,13 @@ class Table extends React.Component {
                     border: "0.5px",
                     borderStyle: "solid",
                     borderColor: "rgba(0, 0, 0, 0.4)"
-                    // borderRadius: "5px"
-                    // borderTop: '0px'
                   }}
                 >
                   <ReactTable
-                    data={data}
+                    data={row.original.subtask.map((entry) => {return {row, ...entry}})}
                     columns={this.columnsLevel2}
-                    defaultPageSize={3}
+                    defaultPageSize={10}
+                    minRows={1}
                     showPagination={false}
                   />
                 </div>
@@ -159,7 +148,7 @@ class Table extends React.Component {
     return (
       <React.Fragment>
         <Switch>
-          <Route path={'/db/workinprogress/card/:id'} component={CardView} />
+          <Route path={"/db/workinprogress/card/:id"} component={CardView} />
           {this.getWIPTable()}
         </Switch>
       </React.Fragment>
