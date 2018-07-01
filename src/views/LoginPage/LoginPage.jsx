@@ -32,7 +32,7 @@ class LoginPage extends React.Component {
     // we use this to make the card to appear after the page has been rendered
     this.state = {
       cardAnimaton: "cardHidden",
-      email: "test@test.com",
+      email: "lf1@test.com",
       password: "test",
       loginError: false
     };
