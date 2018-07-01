@@ -125,12 +125,9 @@ class Table extends React.Component {
   addRow = () => {
     this.setState((state, props) => {
       return {
-        data: [...state.data, {}]
+        data: [...state.data, {subtask:[]}]
       };
     });
-    console.log('====================================');
-    console.log(this.state.data);
-    console.log('====================================');
   };
 
   getWIPTable = () => {

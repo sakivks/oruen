@@ -49,7 +49,7 @@ export function makeData() {
       rate: ""
     },
     {
-
+      subtask: []
     }
   ];
 }
