@@ -81,18 +81,6 @@ class Table extends React.Component {
     const index = cellInfo.index;
     cellInfo = cellInfo.original;
 
-    console.log('====================================');
-    // console.log(cellInfo);
-    console.log(this.state.data.find(
-      task => task.stage === cellInfo.row.original.stage
-    ).subtask[index]);
-    
-    // console.log( this.state.data.find(
-    //   task => task.stage === cellInfo.original.original.stage
-    // ).subtask[cellInfo.index]);
-    console.log('====================================');
-
-    // subtask[cellInfo.index]);
     return (
       <Link to={`${match.path}/card/1`} target="_blank">
         {
