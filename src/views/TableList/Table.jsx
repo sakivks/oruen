@@ -21,50 +21,53 @@ const styles = theme => ({
 });
 
 class Table extends React.Component {
-  state = {
-    data: makeData(),
-    newColumnName: "",
-    columns: [
-      {
-        Header: "Project Stages",
-        accessor: "stage",
-        minWidth: 200,
-        Cell: this.renderEditable
-      },
-      {
-        Header: "Fee (INR)",
-        accessor: "fee",
-        Cell: this.renderEditable
-      },
-      {
-        Header: "Hours",
-        accessor: "hrs",
-        Cell: this.renderEditable
-      },
-      {
-        Header: "Budget",
-        accessor: "budget",
-        Cell: this.renderEditable
-      },
-      {
-        Header: "Rate",
-        accessor: "rate",
-        Cell: this.renderEditable
-      }
-    ],
-    columnsLevel2: [
-      {
-        Header: "Project Sub Stages",
-        accessor: "subStage",
-        minWidth: 300,
-        Cell: this.renderEditable2
-      },
-      {
-        Header: "Fee (INR)",
-        accessor: "fee"
-      }
-    ]
-  };
+  constructor() {
+    super();
+    this.state = {
+      data: makeData(),
+      newColumnName: "",
+      columns: [
+        {
+          Header: "Project Stages",
+          accessor: "stage",
+          minWidth: 200,
+          Cell: this.renderEditable
+        },
+        {
+          Header: "Fee (INR)",
+          accessor: "fee",
+          Cell: this.renderEditable
+        },
+        {
+          Header: "Hours",
+          accessor: "hrs",
+          Cell: this.renderEditable
+        },
+        {
+          Header: "Budget",
+          accessor: "budget",
+          Cell: this.renderEditable
+        },
+        {
+          Header: "Rate",
+          accessor: "rate",
+          Cell: this.renderEditable
+        }
+      ],
+      columnsLevel2: [
+        {
+          Header: "Project Sub Stages",
+          accessor: "subStage",
+          minWidth: 300,
+          Cell: this.renderEditable2
+        },
+        {
+          Header: "Fee (INR)",
+          accessor: "fee"
+        }
+      ]
+    };
+  }
 
   renderEditable = cellInfo => {
     return (
