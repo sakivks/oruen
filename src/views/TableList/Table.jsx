@@ -1,23 +1,30 @@
 import React from "react";
-import { makeData, makeDataLevel2 } from "./Utils";
-
+import { makeData } from "./Utils";
+import { withStyles, TextField } from "material-ui";
 // Import React Table
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import "./table.css";
 import { Route, Link, Switch } from "react-router-dom";
-import { RegularCard } from "components";
+import { RegularCard, Button } from "components";
 
 import CardView from "./CardView";
+// import CustomInput from "../../components/CustomInput/CustomInput";
+
+const styles = theme => ({
+  button: {
+    margin: 30
+  },
+  addColumnTextbox: {
+    marginRight: 10
+  }
+});
 
 class Table extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      data: makeData(),
-      data2: makeDataLevel2()
-    };
-    this.columns = [
+  state = {
+    data: makeData(),
+    newColumnName: "",
+    columns: [
       {
         Header: "Project Stages",
         accessor: "stage",
@@ -44,8 +51,8 @@ class Table extends React.Component {
         accessor: "rate",
         Cell: this.renderEditable
       }
-    ];
-    this.columnsLevel2 = [
+    ],
+    columnsLevel2: [
       {
         Header: "Project Sub Stages",
         accessor: "subStage",
@@ -56,8 +63,8 @@ class Table extends React.Component {
         Header: "Fee (INR)",
         accessor: "fee"
       }
-    ];
-  }
+    ]
+  };
 
   renderEditable = cellInfo => {
     return (
@@ -92,21 +99,66 @@ class Table extends React.Component {
     );
   };
 
+  handleChange = prop => event => {
+    this.setState({ [prop]: event.target.value });
+  };
+
+  addColumn = () => {
+    this.setState((state, props) => {
+      return {
+        columns: [
+          ...state.columns,
+          {
+            Header: state.newColumnName,
+            accessor: state.newColumnName,
+            Cell: this.renderEditable
+          }
+        ],
+        newColumnName: ""
+      };
+    });
+  };
+
   getWIPTable = () => {
-    const { data } = this.state;
+    const { data, columns, columnsLevel2, newColumnName } = this.state;
+    const { classes } = this.props;
     return (
       <RegularCard
         cardTitle="Tasks"
+        footer={
+          <React.Fragment>
+            <Button className={classes.button}>Add Row</Button>
+            <div style={{ float: "right" }}>
+              <TextField
+                className={classes.addColumnTextbox}
+                label="New Column name"
+                value={newColumnName}
+                onChange={this.handleChange("newColumnName")}
+              />
+              <Button
+                className={classes.button}
+                onClick={this.addColumn}
+                disabled={newColumnName === ""}
+              >
+                Add Columns
+              </Button>
+            </div>
+          </React.Fragment>
+        }
         content={
           <ReactTable
             data={data}
-            columns={this.columns}
+            columns={columns}
             defaultPageSize={15}
             showPagination={false}
             minRows={0}
             className="-highlight"
             SubComponent={row => {
-              console.log(row.original.subtask.map((entry) => {return {row, ...entry}}));
+              console.log(
+                row.original.subtask.map(entry => {
+                  return { row, ...entry };
+                })
+              );
               return (
                 <div
                   style={{
@@ -117,8 +169,10 @@ class Table extends React.Component {
                   }}
                 >
                   <ReactTable
-                    data={row.original.subtask.map((entry) => {return {row, ...entry}})}
-                    columns={this.columnsLevel2}
+                    data={row.original.subtask.map(entry => {
+                      return { row, ...entry };
+                    })}
+                    columns={columnsLevel2}
                     defaultPageSize={10}
                     minRows={1}
                     showPagination={false}
@@ -144,4 +198,4 @@ class Table extends React.Component {
   }
 }
 
-export default Table;
+export default withStyles(styles)(Table);
