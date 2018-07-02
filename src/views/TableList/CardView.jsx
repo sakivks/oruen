@@ -99,7 +99,7 @@ class CardView extends React.Component {
   };
 
   render() {
-    const {classes} = this.props;
+    const { classes, disableEdit } = this.props;
     return (
       <div>
         <RegularCard
@@ -113,7 +113,7 @@ class CardView extends React.Component {
               <div className={classes.heading}>
                 <Marked md="__Comments:__" />
               </div>
-              <Comments />
+              <Comments disabelAddComment={disableEdit}/>
             </div>
           }
         />

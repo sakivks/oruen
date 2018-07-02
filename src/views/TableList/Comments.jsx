@@ -123,7 +123,8 @@ class Comments extends Component {
     let commentsDOM = comments.map((comment, i) => {
       titleDOM = (
         <div>
-          <Muted>{comment.user}
+          <Muted>
+            {comment.user}
             <span className={classes.floatRight}>{comment.time}</span>
           </Muted>
         </div>
@@ -139,10 +140,6 @@ class Comments extends Component {
             title={titleDOM}
             subheader={<Typography>{comment.text}</Typography>}
           />
-          {/* <CardContent>
-            
-          </CardContent> */}
-
         </Card>
       );
     });
@@ -150,10 +147,11 @@ class Comments extends Component {
   };
 
   render() {
+    const { disabelAddComment } = this.props;
     return (
       <div>
         {this.renderComments()}
-        {this.addComments()}
+        {!disabelAddComment && this.addComments()}
       </div>
     );
   }

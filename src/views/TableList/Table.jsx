@@ -87,18 +87,16 @@ class Table extends React.Component {
   };
 
   renderEditable2 = cellInfo => {
-    const { match } = this.props;
     const index = cellInfo.index;
     cellInfo = cellInfo.original;
 
     return (
-      <Link to={`${match.path}/card/1`} target="_blank">
-        {
-          this.state.data.find(
-            task => task.stage === cellInfo.row.original.stage
-          ).subtask[index].subStage
-        }
-      </Link>
+      // <Link to={`${match.path}/card/1`} target="_blank">
+      //   {
+      this.state.data.find(task => task.stage === cellInfo.row.original.stage)
+        .subtask[index].subStage
+      //   }
+      // </Link>
     );
   };
 
@@ -107,7 +105,7 @@ class Table extends React.Component {
   };
 
   addColumn = () => {
-    this.setState((state) => {
+    this.setState(state => {
       return {
         columns: [
           ...state.columns,
@@ -125,14 +123,14 @@ class Table extends React.Component {
   addRow = () => {
     this.setState((state, props) => {
       return {
-        data: [...state.data, {subtask:[]}]
+        data: [...state.data, { subtask: [] }]
       };
     });
   };
 
   getWIPTable = () => {
     const { data, columns, columnsLevel2, newColumnName } = this.state;
-    const { classes } = this.props;
+    const { classes, match } = this.props;
     return (
       <RegularCard
         cardTitle="Tasks"
@@ -183,6 +181,25 @@ class Table extends React.Component {
                     columns={columnsLevel2}
                     defaultPageSize={10}
                     minRows={1}
+                    SubComponent={subRow => {
+                      return (
+                        <React.Fragment>
+                          <CardView disableEdit />
+                          <Button
+                            style={{
+                              width: 120,
+                              marginTop: 0,
+                              marginBottom: 20,
+                              marginLeft: 20
+                            }}
+                          >
+                            <Link to={`${match.path}/card/1`} target="_blank">
+                              Edit
+                            </Link>
+                          </Button>
+                        </React.Fragment>
+                      );
+                    }}
                     showPagination={false}
                   />
                 </div>
