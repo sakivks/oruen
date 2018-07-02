@@ -70,7 +70,7 @@ class CardView extends React.Component {
           <Table>
             <TableHead className={classes.thead}>
               <TableRow>
-                <TableCell className={classes.th}>Name</TableCell>
+                <TableCell className={classes.th}>Time Keepers</TableCell>
                 <TableCell className={classes.th}>Work</TableCell>
                 <TableCell className={classes.th} numeric>
                   Time Log
