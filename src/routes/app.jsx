@@ -21,20 +21,20 @@ import {
 const dbPath = "/db";
 
 const appRoutes = [
-  {
-    path: `${dbPath}/aboutus`,
-    sidebarName: "About us",
-    navbarName: "About us",
-    icon: LibraryBooks,
-    component: AboutUs
-  },
-  {
-    path: `${dbPath}/howitworks`,
-    sidebarName: "How it works",
-    navbarName: "How it works",
-    icon: BubbleChart,
-    component: HowItWorks
-  },
+  // {
+  //   path: `${dbPath}/aboutus`,
+  //   sidebarName: "About us",
+  //   navbarName: "About us",
+  //   icon: LibraryBooks,
+  //   component: AboutUs
+  // },
+  // {
+  //   path: `${dbPath}/howitworks`,
+  //   sidebarName: "How it works",
+  //   navbarName: "How it works",
+  //   icon: BubbleChart,
+  //   component: HowItWorks
+  // },
   {
     path: `${dbPath}/onboarding`,
     sidebarName: "Onboarding",
@@ -73,7 +73,7 @@ const appRoutes = [
   {
     redirect: true,
     path: `${dbPath}/`,
-    to: `${dbPath}/aboutus`,
+    to: `${dbPath}/onboarding`,
     navbarName: "Redirect"
   }
 ];
